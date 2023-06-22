@@ -1,4 +1,11 @@
+using Test.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+//set connect to database
+var connectString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite(connectString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
